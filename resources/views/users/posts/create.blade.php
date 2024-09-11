@@ -39,7 +39,7 @@
             <input type="file" name="image" id="image" class="form-control" aria-describedby="image-info">
             <div class="form-text" id="image-info">
                 The acceptable formats are jpeg, jpg, png and gif only.<br>
-                Max file is 1048Kb.
+                Max file is 2048Kb.
             </div>
             {{-- Error message area --}}
             @error('image')

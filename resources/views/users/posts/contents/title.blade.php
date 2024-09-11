@@ -29,8 +29,8 @@
                 @if (Auth::user()->id === $post->user->id)
                     <div class="dropdown-menu">
                         {{-- edit --}}
-                        <a href="#" class="dropdown-item">
-                            <i class="fa-regular fa-pen-to-square"></i> Edit
+                        <a href  = "{{ route('post.edit', $post->id ) }}" class = "dropdown-item">
+                        <i class = "fa-regular fa-pen-to-square"></i> Edit
                         </a>
 
                         {{-- delete --}}
