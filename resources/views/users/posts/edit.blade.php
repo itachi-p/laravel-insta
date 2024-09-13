@@ -3,7 +3,7 @@
 @section('title', 'Edit Post')
 
 @section('content')
-    <form action = "#" method = "post" enctype = "multipart/form-data">
+    <form action = "{{ route('post.update', $post->id) }}" method = "post" enctype = "multipart/form-data">
         @csrf
         @method('PATCH')
 
@@ -27,7 +27,7 @@
                         <input type="checkbox" name="category[]" id="{{ $category->name }}" class="form-check-input"
                             value="{{ $category->id }}" checked>
                     @else
-                        <input type="checkbox" name="category[]" id="{{ $category->name }}">
+                        <input type="checkbox" name="category[]" id="{{ $category->name }}" class="form-check-input" value="{{ $category->id }}">
                     @endif
 
                     <label for="{{ $category->name }}" class="form-check-label">{{ $category->name }}</label>

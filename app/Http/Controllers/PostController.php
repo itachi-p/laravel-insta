@@ -109,7 +109,7 @@ class PostController extends Controller
         $request->validate([
             'category'    => 'required|array|between:1,3',
             'description' => 'required|min:1|max:1000',
-            'image' => 'memes:jpg,png,jpeg,gif|max:2048'
+            'image' => 'mimes:jpg,png,jpeg,gif|max:2048'
         ]);
 
         # 2. Update the post
@@ -129,11 +129,13 @@ class PostController extends Controller
         # 4. Save the new categories to category_post pivot table
         foreach ($request->category as $category_id) {
             $category_post[] = [
-                'category_id' => category_id
+                'category_id' => $category_id
             ];
         }
         $post->categoryPost()->createMany($category_post);
 
         return redirect()->route('post.show', $id);
     }
+
+    public function destroy($id){}
 }
