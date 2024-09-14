@@ -91,7 +91,7 @@ class PostController extends Controller
                 $selected_categories = [
                     [1]],
                     [2],
-                        [3]
+                    [3]
                     ];
             */
         }
