@@ -89,7 +89,7 @@ class PostController extends Controller
             $selected_categories[] = $category_post->category_id;
             /*
                 $selected_categories = [
-                    [1]],
+                    [1],
                     [2],
                     [3]
                     ];
@@ -99,7 +99,7 @@ class PostController extends Controller
         return view('users.posts.edit')
             ->with('post', $post)                                 // holds the record of a post
             ->with('all_categories', $all_categories)             // holds all the categories from the table
-            ->with('selected_categories', $selected_categories);  // holds all categories ids of a post
+            ->with('selected_categories', $selected_categories);  // holds all category IDs of a post in an array
     }
 
     // update() update the post
@@ -109,7 +109,7 @@ class PostController extends Controller
         $request->validate([
             'category'    => 'required|array|between:1,3',
             'description' => 'required|min:1|max:1000',
-            'image' => 'mimes:jpg,png,jpeg,gif|max:2048'
+            'image' => 'mimes:jpg,jpeg,png,gif|max:2048'
         ]);
 
         # 2. Update the post

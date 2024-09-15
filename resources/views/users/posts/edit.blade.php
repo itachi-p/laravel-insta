@@ -22,10 +22,9 @@
             --}}
 
             @foreach ($all_categories as $category)
-                <div class = "form-check form-check-inline">
-                    @if (in_array($category->id, $selected_categories))
-                        <input type="checkbox" name="category[]" id="{{ $category->name }}" class="form-check-input"
-                            value="{{ $category->id }}" checked>
+                <div class="form-check form-check-inline">
+                    @if (in_array($category->id, $selected_categories)) <!-- 1~6まで順に出力する中で、もし選択されたチェックボックスならチェックを付ける -->
+                        <input type="checkbox" name="category[]" id="{{ $category->name }}" class="form-check-input" value="{{ $category->id }}" checked>
                     @else
                         <input type="checkbox" name="category[]" id="{{ $category->name }}" class="form-check-input" value="{{ $category->id }}">
                     @endif
@@ -40,10 +39,9 @@
         </div>
 
         {{-- description --}}
-        <div class = "mb-3">
-            <label for   = "description" class = "form-label fw-bold">Description</label>
-            <textarea name  = "description" id    = "description" rows = "3" class = "form-control"
-                placeholder = "What's on your mind?">{{ old('description', $post->description) }}</textarea>
+        <div class="mb-3">
+            <label for="description" class="form-label fw-bold">Description</label>
+            <textarea name="description" id="description" rows="3" class="form-control" placeholder="What's on your mind?">{{ old('description', $post->description) }}</textarea>
             {{-- Error message area --}}
             @error('description')
                 <div class="text-danger small">{{ message }}</div>
@@ -51,13 +49,12 @@
         </div>
 
         {{-- image --}}
-        <div class = "row mb-4">
-            <div class = "col-6">
-                <label for   = "image" class             = "form-label fw-bold">Image</label>
-                <img src   = "{{ $post->image }}" alt = "post id {{ $post->id }}" class = "img-thumbnail w-100">
-                <input type  = "file" name               = "image" id                       = "image"
-                    class = "form-control mt-1" area-describedby = "image-info">
-                <div class = "form-text" id            = "image-info">
+        <div class="row mb-4">
+            <div class="col-6">
+                <label for="image" class="form-label fw-bold">Image</label>
+                <img src="{{ $post->image }}" alt="post id {{ $post->id }}" class="img-thumbnail w-100">
+                <input type="file" name="image" id="image" class="form-control mt-1" area-describedby="image-info">
+                <div class="form-text" id="image-info">
                     The acceptable formats are jpeg, jpg, png and gif only.<br>
                     Max file is 2048Kb.
                 </div>
