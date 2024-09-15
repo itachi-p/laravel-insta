@@ -131,6 +131,13 @@ class PostController extends Controller
             $category_post[] = [
                 'category_id' => $category_id
             ];
+            /* 2D associate array
+                $category_post = [
+                    ['category_id' => 1],
+                    ['category_id' => 2],
+                    ['category_id' => 3]
+                ];
+            */
         }
         $post->categoryPost()->createMany($category_post);
 
