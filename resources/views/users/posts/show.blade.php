@@ -142,7 +142,7 @@
                                     &nbsp;
                                     <p class = "d-inline fw-light">{{ $comment->body }}</p>
 
-                                    <form action = "" method = "post">
+                                    <form action = "{{ route('comment.destroy', $comment->id) }}" method = "post">
                                         @csrf
                                         @method('DELETE')
 
