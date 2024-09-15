@@ -9,7 +9,7 @@
         }
         .card-body {
             position: absolute;
-            top: 65px;
+            top     : 65px;
         }
     </style>
 
@@ -150,7 +150,7 @@
 
                                         {{-- If the AUTH USER is the OWNER of the COMMENT, show the DELETE BUTTON --}}
                                         @if (AUTH::user()->id === $comment->user->id)
-                                        &middot;
+                                        &middot; <!-- middle dot -> "・" -->
                                         <button type="submit" class="border-0 bg-transparent text-danger p-0 xsmall">Delete</button>
                                         @endif
                                     </form>
