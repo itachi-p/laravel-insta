@@ -144,5 +144,11 @@ class PostController extends Controller
         return redirect()->route('post.show', $id);
     }
 
-    public function destroy($id){}
+    // destroy()
+    public function destroy($id)
+    {
+        $this->post->destroy($id);
+
+        return redirect()->route('index');
+    }
 }

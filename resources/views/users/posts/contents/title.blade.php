@@ -43,7 +43,7 @@
                 @else
                     {{-- If you are not the owner of the post, show an unfollow button. --}}
                     <div class="dropdown-menu">
-                        <form action="#" method="post">
+                        <form action=" {{ route('post.destroy', $post->id ) }}" method="post">
                             @csrf
                             @method('DELETE')
 
