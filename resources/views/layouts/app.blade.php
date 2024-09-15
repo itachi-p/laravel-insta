@@ -20,7 +20,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel = "stylesheet" href = "{{ asset('css/style.css') }}">
+    <!-- Original Favicon -->
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 </head>
 <body>
     <div id="app">
@@ -91,7 +93,7 @@
                                     <a href="#" class="dropdown-item">
                                         <i class="fa-solid fa-circle-user"></i> Profile
                                     </a>
-                                    
+
                                     {{-- Logout --}}
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

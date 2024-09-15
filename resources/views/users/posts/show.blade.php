@@ -107,6 +107,24 @@
                     <p class = "text-uppercase text-muted xsmall">{{ date('M d, Y', strtotime($post->created_at)) }}</p>
 
                     {{-- form comment --}}
+                    <div class  = "mt-4">
+                        <form action = "#" method = "post">
+                            @csrf
+
+                            <div class = "input-group">
+                                <textarea name  = "comment_body{{ $post->id }}" rows = "1" placeholder = "Add a comment..."
+                                    class = "form-control form-control-sm">{{ old('comment_body' . $post->id) }}</textarea>
+
+                                <button type = "submit" class = "btn btn-outline-secondary btn-sm">Post</button>
+                            </div>
+                            {{-- Error --}}
+                            @error('comment_body' . $post->id)
+                                <div class="text-danger small">{{ $message }}</div>
+                            @enderror
+                        </form>
+
+                        {{-- Show all comments here --}}
+                    </div>
 
                 </div>
             </div>
