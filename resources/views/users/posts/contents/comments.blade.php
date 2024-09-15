@@ -1,7 +1,7 @@
 <div class = "mt-3">
     {{-- show all comments of the post here --}}
 
-    <form action = "#" method = "post">
+    <form action = "{{ route('comment.store', $post->id) }}" method = "post">
         @csrf
 
         <div      class = "input-group">

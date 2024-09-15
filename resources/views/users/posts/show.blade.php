@@ -3,6 +3,16 @@
 @section('title', 'Show Post')
 
 @section('content')
+    <style>
+        .col-4 {
+            overflow-y: scroll;
+        }
+        .card-body {
+            position: absolute;
+            top: 65px;
+        }
+    </style>
+
     <div class="row border shadow">
         {{-- post image --}}
         <div class="col p-0 border-end">
@@ -99,33 +109,55 @@
                     </div>
 
                     {{-- owner + description --}}
-                    <a href = "#" class = "text-decoration-none text-dark fw-bold">
+                    <a href="#" class = "text-decoration-none text-dark fw-bold">
                         {{ $post->user->name }}
                     </a>
                     &nbsp;
-                    <p class = "fw-light d-inline">{{ $post->description }}</p>
-                    <p class = "text-uppercase text-muted xsmall">{{ date('M d, Y', strtotime($post->created_at)) }}</p>
+                    <p class="fw-light d-inline">{{ $post->description }}</p>
+                    <p class="text-uppercase text-muted xsmall">{{ date('M d, Y', strtotime($post->created_at)) }}</p>
 
                     {{-- form comment --}}
-                    <div class  = "mt-4">
-                        <form action = "#" method = "post">
+                    <div class="mt-4">
+                        <form action="{{ route('comment.store', $post->id) }}" method="post">
                             @csrf
 
-                            <div class = "input-group">
-                                <textarea name  = "comment_body{{ $post->id }}" rows = "1" placeholder = "Add a comment..."
-                                    class = "form-control form-control-sm">{{ old('comment_body' . $post->id) }}</textarea>
+                            <div class="input-group">
+                                <textarea name="comment_body{{ $post->id }}" rows="1" placeholder="Add a comment..."
+                                    class="form-control form-control-sm">{{ old('comment_body' . $post->id) }}</textarea>
 
-                                <button type = "submit" class = "btn btn-outline-secondary btn-sm">Post</button>
+                                <button type="submit" class="btn btn-outline-secondary btn-sm">Post</button>
                             </div>
                             {{-- Error --}}
                             @error('comment_body' . $post->id)
                                 <div class="text-danger small">{{ $message }}</div>
                             @enderror
                         </form>
-
-                        {{-- Show all comments here --}}
                     </div>
+                    {{-- Show all comments here --}}
+                    @if ($post->comments->isNotEmpty())
+                        <ul class = "list-group mt-2">
+                            @foreach ($post->comments as $comment)
+                                <li class = "list-group-item border-0 p-0 mb-2">
+                                <a  href  = "#" class = "text-decoration-none text-dark fw-bold">{{ $comment->user->name }}</a>
+                                    &nbsp;
+                                    <p class = "d-inline fw-light">{{ $comment->body }}</p>
 
+                                    <form action = "" method = "post">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <span class = "text-uppercase text-muted xsmall">{{ date('M d, Y', strtotime($comment->created_at)) }}</span>
+
+                                        {{-- If the AUTH USER is the OWNER of the COMMENT, show the DELETE BUTTON --}}
+                                        @if (AUTH::user()->id === $comment->user->id)
+                                        &middot;
+                                        <button type="submit" class="border-0 bg-transparent text-danger p-0 xsmall">Delete</button>
+                                        @endif
+                                    </form>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
                 </div>
             </div>
         </div>
