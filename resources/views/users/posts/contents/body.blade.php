@@ -45,5 +45,6 @@
     <p class="text-uppercase text-muted xsmall">{{ date('M d, Y', strtotime($post->created_at)) }}</p>
 
     {{-- include comment form here --}}
+    @include('users.posts.contents.comments')
 
 </div>
