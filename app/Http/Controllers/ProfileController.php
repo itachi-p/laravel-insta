@@ -13,4 +13,12 @@ class ProfileController extends Controller
     {
         $this->user = $user;
     }
+
+    public function show($id)
+    {
+        $user = $this->user->findOrFail($id);
+
+        return view('users.profile.show')
+            ->with('user', $user);
+    }
 }
