@@ -22,15 +22,15 @@
                 @if (Auth::user()->id === $user->id)
                     <a href="#" class="btn btn-outline-secondary btn-sm fw-bold">Edit Profile</a>
                 @else
-                    @if ($user->isFollowed())
+                    @if ($user)
                         {{-- follow user --}}
-                        <form action="{{ route('follow.destroy' . $user->id) }}" method="post">
+                        <form action="#" method="post">
                             @csrf
                             <button type="submit" class="btn btn-danger btn-sm fw-bold">Unfollow</button>
                         </form>
                     @else
                         {{-- unfollow user --}}
-                        <form action="{{ route('follow.create' . $user->id) }}" method="post" class="d-inline">
+                        <form action="#" method="post" class="d-inline">
                             @csrf
                             <button type="submit" class="btn btn-primary btn-sm fw-bold">Follow</button>
                         </form>

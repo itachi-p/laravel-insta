@@ -26,7 +26,7 @@
                     <div class = "row align-items-center">
                         {{-- avatar --}}
                         <div class = "col-auto">
-                            <a href  = "#">
+                            <a href  = "{{ route('profile.show', $post->user->id) }}">
                                 @if ($post->user->avatar)
                                     <img src="{{ $post->user->avatar }}" alt="{{ $post->user->name }}"
                                         class="rounded-circle avatar-sm">
@@ -38,7 +38,7 @@
 
                         {{-- name --}}
                         <div class = "col ps-0">
-                            <a href  = "#" class = "text-decoration-none text-dark">
+                            <a href  = "{{ route('profile.show', $post->user->id) }}" class = "text-decoration-none text-dark">
                                 {{ $post->user->name }}
                             </a>
                         </div>
@@ -109,7 +109,7 @@
                     </div>
 
                     {{-- owner + description --}}
-                    <a href="#" class = "text-decoration-none text-dark fw-bold">
+                    <a href="{{ route('profile.show', $post->user->id) }}" class = "text-decoration-none text-dark fw-bold">
                         {{ $post->user->name }}
                     </a>
                     &nbsp;
@@ -138,7 +138,7 @@
                         <ul class = "list-group mt-2">
                             @foreach ($post->comments as $comment)
                                 <li class = "list-group-item border-0 p-0 mb-2">
-                                <a  href  = "#" class = "text-decoration-none text-dark fw-bold">{{ $comment->user->name }}</a>
+                                <a  href  = "{{ route('profile.show', $comment->user->id) }}" class = "text-decoration-none text-dark fw-bold">{{ $comment->user->name }}</a>
                                     &nbsp;
                                     <p class = "d-inline fw-light">{{ $comment->body }}</p>
 
