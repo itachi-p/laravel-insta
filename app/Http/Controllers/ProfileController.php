@@ -14,6 +14,7 @@ class ProfileController extends Controller
         $this->user = $user;
     }
 
+    // show() - view the profile page of a user
     public function show($id)
     {
         $user = $this->user->findOrFail($id);

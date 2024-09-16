@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ProfileController;
 
 Auth::routes();
 
@@ -24,5 +25,8 @@ Route::group(['middleware' => 'auth'], function(){
         // COMMENT
     Route::post('/comment/{post_id}/store', [CommentController::class, 'store'])->name('comment.store');
     Route::delete('/comment/{id}/destroy', [CommentController::class, 'destroy'])->name('comment.destroy');
+
+      // PROFILE
+    Route::get('/profile/{id}/show', [ProfileController::class,'show'])->name('profile.show');
 });
 

@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,13 +18,16 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <!-- Fontawesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Custom CSS -->
     <link rel = "stylesheet" href = "{{ asset('css/style.css') }}">
     <!-- Original Favicon -->
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 </head>
+
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -31,7 +35,9 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name') }}
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -80,7 +86,8 @@
 
                                 <button id="account-dropdown" class="btn shadow-none nav-link" data-bs-toggle="dropdown">
                                     @if (Auth::user()->avatar)
-                                        <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" class="rounded-circle avatar-sm">
+                                        <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}"
+                                            class="rounded-circle avatar-sm">
                                     @else
                                         <i class="fa-solid fa-circle-user text-dark icon-sm"></i>
                                     @endif
@@ -90,13 +97,13 @@
                                     {{-- [SOON] Admin Controls --}}
 
                                     {{-- Profile --}}
-                                    <a href="#" class="dropdown-item">
+                                    <a href="{{ route('profile.show', Auth::user()->id) }}" class="dropdown-item">
                                         <i class="fa-solid fa-circle-user"></i> Profile
                                     </a>
 
                                     {{-- Logout --}}
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         <i class="fa-solid fa-right-from-bracket"></i> {{ __('Logout') }}
                                     </a>
@@ -126,4 +133,5 @@
         </main>
     </div>
 </body>
+
 </html>
