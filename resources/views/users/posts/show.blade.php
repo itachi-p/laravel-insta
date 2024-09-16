@@ -4,6 +4,7 @@
 
 @section('content')
     <style>
+        /* Scroll bar for more comments */
         .col-4 {
             overflow-y: scroll;
         }
@@ -26,7 +27,7 @@
                     <div class = "row align-items-center">
                         {{-- avatar --}}
                         <div class = "col-auto">
-                            <a href  = "{{ route('profile.show', $post->user->id) }}">
+                        <a   href  = "{{ route('profile.show', $post->user->id) }}">
                                 @if ($post->user->avatar)
                                     <img src="{{ $post->user->avatar }}" alt="{{ $post->user->name }}"
                                         class="rounded-circle avatar-sm">
@@ -137,7 +138,7 @@
                     @if ($post->comments->isNotEmpty())
                         <ul class = "list-group mt-2">
                             @foreach ($post->comments as $comment)
-                                <li class = "list-group-item border-0 p-0 mb-2">
+                                <li class = "list-group-item border-0 p-0 mb-2 bg-white">
                                 <a  href  = "{{ route('profile.show', $comment->user->id) }}" class = "text-decoration-none text-dark fw-bold">{{ $comment->user->name }}</a>
                                     &nbsp;
                                     <p class = "d-inline fw-light">{{ $comment->body }}</p>

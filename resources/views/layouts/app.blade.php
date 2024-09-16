@@ -66,7 +66,7 @@
                         @else
                             {{-- Home --}}
                             <li class="nav-item" title="Home">
-                                <a href="#" class="nav-link">
+                                <a href="{{ route('index') }}" class="nav-link">
                                     <i class="fa-solid fa-house fa-dark icon-sm"></i>
                                 </a>
                             </li>
