@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Profile')
+@section('title', $user->name)
 
 @section('content')
     {{-- include header here --}}
