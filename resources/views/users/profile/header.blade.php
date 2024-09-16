@@ -49,7 +49,7 @@
 
             {{-- num of followers --}}
             <div class="col-auto">
-                <a href="{{ route('profile.followers', $user->id) }}" class="text-decoration-none text-dark">
+                <a href="#" class="text-decoration-none text-dark">
                     <strong>0</strong> followers
                 </a>
 
@@ -57,7 +57,7 @@
 
             {{-- num of following --}}
             <div class = "col-auto">
-            <a   href  = "{{ route('profile.following', $user->id) }}" class = "text-decoration-none text-dark">
+            <a   href  = "#" class = "text-decoration-none text-dark">
                     <strong>0</strong> following
                 </a>
             </div>
