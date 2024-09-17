@@ -28,5 +28,6 @@ Route::group(['middleware' => 'auth'], function(){
 
       // PROFILE
     Route::get('/profile/{id}/show', [ProfileController::class,'show'])->name('profile.show');
+    Route::get('/profile/edit/', [ProfileController::class,'edit'])->name('profile.edit');
 });
 

@@ -22,4 +22,13 @@ class ProfileController extends Controller
         return view('users.profile.show')
             ->with('user', $user);
     }
+
+    // edit() - view Edit Profile Page
+    public function edit()
+    {
+        $user = $this->user->findOrFail(Auth::user()->id);
+
+        return view('users.profile.edit')
+            ->with('user', $user);
+    }
 }
