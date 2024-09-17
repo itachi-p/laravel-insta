@@ -20,7 +20,7 @@
             {{-- Action buttons: edit/follow/following --}}
             <div class = "col-auto p-2">
                 @if (Auth::user()->id === $user->id)
-                    <a href="#" class="btn btn-outline-secondary btn-sm fw-bold">Edit Profile</a>
+                    <a href="{{ route('profile.edit') }}" class="btn btn-outline-secondary btn-sm fw-bold">Edit Profile</a>
                 @else
                     @if ($user)
                         {{-- follow user --}}
