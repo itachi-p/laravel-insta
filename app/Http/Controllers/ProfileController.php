@@ -37,7 +37,7 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'name'   => 'required|min:1|max:50', // unique: table-name, column-name, PK value
+            'name'   => 'required|min:1|max:50', // unique: table-name, column-name, PrimaryKey value
             'email'  => 'required|email|max:50|unique:users,email,' . Auth::user()->id,
             'avatar' => 'mimes:jpg,jpeg,png,gif|max:1024',
             'introduction' => 'max:100'

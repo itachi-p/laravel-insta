@@ -6,7 +6,7 @@
 @section('content')
     <div class="row fustify-content-center">
         <div class="col-8">
-            <form action="#" method="post" class="bg-white shadow rounded-3 p-5" enctype="multipart/form-data">
+            <form action="{{ route('profile.update') }}" method="post" class="bg-white shadow rounded-3 p-5" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
 

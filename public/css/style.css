@@ -37,7 +37,16 @@
     object-fit: cover;
 }
 
-/* Profile page avatar image */
-.avatar-lg {
+/* Profile page avatar image - navbar */
+.avatar-sm {
+    width : 2rem;
+    height: 2rem;
+    object-fit: cover;
+}
 
+/* avatar-lg - profile page */
+.avatar-lg {
+    width : 9rem;
+    height: 9rem;
+    object-fit: cover;
 }
