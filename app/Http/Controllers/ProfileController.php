@@ -32,4 +32,29 @@ class ProfileController extends Controller
         return view('users.profile.edit')
             ->with('user', $user);
     }
+
+    // update() - save changes of the Auth user
+    public function update(Request $request)
+    {
+        $request->validate([
+            'name'   => 'required|min:1|max:50',
+            'email'  => 'required|email|max:50|unique:users,email',
+            'avatar' => 'mimes:jpg,jpeg,png,gif|max:1024',
+            'introduction' => 'max:100'
+        ]);
+
+        $user               = $this->user->findOrFail(Auth::user()->id);
+        $user->name         = $request->name;
+        $user->email        = $request->email;
+        $user->introduction = $request->introduction;
+
+        if ($request->avatar) { // checking if there is new avatar to be uploaded
+            $user->avatar = 'data:image/' . $request->avatar->extension() . ';base64,' . base64_encode(file_get_contents($request->avatar));
+        }
+
+        # Save
+        $user->save();
+
+        return redirect()->route('profile.show', Auth::user()->id);
+    }
 }
