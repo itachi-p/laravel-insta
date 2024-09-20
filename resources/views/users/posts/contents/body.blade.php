@@ -11,7 +11,7 @@
         {{-- heart button --}}
         <div class="col-auto">
             {{-- like post --}}
-            <form action="#" method="post">
+            <form action="{{ route('like.store', $post->id) }}" method="post">
                 @csrf
                 <button type="submit" class="btn btn-sm shadow-none p-0">
                     <i class="fa-regular fa-heart"></i>
