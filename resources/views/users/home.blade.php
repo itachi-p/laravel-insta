@@ -3,7 +3,7 @@
 @section('title', 'Home')
 
 @section('content')
-    <div class="row gx-5">
+    <div class = "row gx-5">
         {{-- POSTS --}}
         <div class="col-8">
             @forelse ($all_posts as $post)
