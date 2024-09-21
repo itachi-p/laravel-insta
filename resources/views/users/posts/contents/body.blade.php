@@ -12,7 +12,7 @@
         <div class = "col-auto">
             @if ($post->isLiked())
                 {{-- unlike post --}}
-                <form action = "#" method = "post">
+                <form action = "{{ route('like.destroy', $post->id) }}" method = "post">
                     @csrf
                     @method('DELETE')
                     <button type  = "submit" class = "btn btn-sm shadow-none p-0">
