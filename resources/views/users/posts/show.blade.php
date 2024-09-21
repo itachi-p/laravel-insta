@@ -69,7 +69,8 @@
                                 {{-- include modal here --}}
                                 @include('users.posts.contents.modals.delete')
                             @else
-                                <form action = "#" method = "post">
+                                {{-- follow user --}}
+                                <form action = "{{ route('follow.store', $post->user_id) }}" method = "post">
                                     @csrf
 
                                     <button type="submit" class="border-0 bg-transparent p-0 text-primary">Follow</button>
