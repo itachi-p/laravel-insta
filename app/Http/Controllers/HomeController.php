@@ -35,7 +35,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $home_posts = $this->getHomePosts();
+        $home_posts      = $this->getHomePosts();
         $suggested_users = $this->getSuggetsedUsers();
 
         return view('users.home')
