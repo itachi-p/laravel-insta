@@ -25,4 +25,17 @@ class FollowController extends Controller
 
         return redirect()->back();
     }
+
+
+    // destroy() - unfollow user user
+    public function destroy($user_id)
+    {
+        $this->follow
+        ->where('follower_id', Auth::user()->id)
+        ->where('following_id', $user_id)
+        ->delete();
+
+        return redirect()->back();
+    }
+
 }

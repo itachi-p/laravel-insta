@@ -25,14 +25,14 @@
                 @else
                     @if ($user->isFollowed())
                         {{-- unfollow user --}}
-                        <form action="#" method="post" class="d-inline">
+                        <form action = "#" method = "post" class = "d-inline">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-outline-secondary btn-sm fw-bold">Following</button>
                         </form>
                     @else
                         {{-- follow user --}}
-                        <form action="{{ route('follow.store', $user->id) }}" method="post">
+                        <form action="{{ route('follow.store', $user->id) }}" method="post" class="d-inline">
                             @csrf
                             <button type="submit" class="btn btn-primary btn-sm fw-bold">Follow</button>
                         </form>
