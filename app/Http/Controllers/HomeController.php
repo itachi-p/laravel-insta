@@ -72,7 +72,8 @@ class HomeController extends Controller
             }
         }
 
-        return $suggested_users;
+        return array_slice($suggested_users, 0, 5);  // get the first 5 users
+        // array_slice(x, y, z) - x: array, y: offset/starting index, z: length/number of elements to get
         }
 
 }
