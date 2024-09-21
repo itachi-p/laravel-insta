@@ -20,21 +20,23 @@
             {{-- Action buttons: edit/follow/following --}}
             <div class = "col-auto p-2">
                 @if (Auth::user()->id === $user->id)
-                    <a href="{{ route('profile.edit') }}" class="btn btn-outline-secondary btn-sm fw-bold">Edit Profile</a>
+                    <a href="{{ route('profile.edit') }}" class="btn btn-outline-secondary btn-sm fw-bold">Edit
+                        Profile</a>
                 @else
-                    {{-- @if ($user) --}}
+                    @if ($user->isFollowed())
+                        {{-- unfollow user --}}
+                        <form action="#" method="post" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-outline-secondary btn-sm fw-bold">Following</button>
+                        </form>
+                    @else
                         {{-- follow user --}}
                         <form action="{{ route('follow.store', $user->id) }}" method="post">
                             @csrf
                             <button type="submit" class="btn btn-primary btn-sm fw-bold">Follow</button>
                         </form>
-                    {{-- {{-- @else --}}
-                        {{-- unfollow user --}}
-                        {{-- <form action="#" method="post" class="d-inline">
-                            @csrf
-                            <button type="submit" class="btn btn-danger btn-sm fw-bold">Unfollow</button>
-                        </form>
-                    @endif --}}
+                    @endif
                 @endif
             </div>
         </div>
@@ -57,7 +59,7 @@
 
             {{-- num of following --}}
             <div class = "col-auto">
-            <a   href  = "#" class = "text-decoration-none text-dark">
+                <a href  = "#" class = "text-decoration-none text-dark">
                     <strong>0</strong> following
                 </a>
             </div>
