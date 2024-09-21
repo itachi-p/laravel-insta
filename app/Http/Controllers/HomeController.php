@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -31,9 +32,25 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $all_posts = $this->post->latest()->get();
+        $home_posts = $this->getHomePosts();
 
         return view('users.home')
-                ->with('all_posts', $all_posts);
+                ->with('home_posts', $home_posts);
+    }
+
+
+    # get the posts of the auth user and the posts of the following users only
+    private function getHomePosts()
+    {
+        $all_posts  = $this->post->latest()->get();
+        $home_posts = [];                            // In case the array $home_posts is empty, it will not return NULL, but empty instead
+
+        foreach ($all_posts as $post){
+            if ($post->user->isFollowed() || $post->user->id === Auth::user()->id){
+                $home_posts[] = $post;
+            }
+        }
+
+        return $home_posts;
     }
 }

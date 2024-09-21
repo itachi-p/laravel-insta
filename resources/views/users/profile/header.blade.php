@@ -43,16 +43,17 @@
 
         <div class = "row mb-3">
             {{-- num of posts --}}
-            <div class="col-auto">
-                <a href="{{ route('profile.show', $user->id) }}" class="text-decoration-none text-dark">
-                    <strong>{{ $user->posts->count() }}</strong> posts
+            <div class = "col-auto">
+            <a   href  = "{{ route('profile.show', $user->id) }}" class = "text-decoration-none text-dark">
+                    {{-- condition ? true statement : false statement --}}
+                    <strong>{{ $user->posts->count() }}</strong> {{ $user->posts->count() == 1 ? 'post' : 'posts' }}
                 </a>
             </div>
 
             {{-- num of followers --}}
             <div class="col-auto">
                 <a href="#" class="text-decoration-none text-dark">
-                    <strong>0</strong> followers
+                    <strong>{{ $user->followers->count() }}</strong> {{ $user->followers->count() == 1 ? 'follower' : 'followers' }}
                 </a>
 
             </div>
@@ -60,7 +61,7 @@
             {{-- num of following --}}
             <div class = "col-auto">
                 <a href  = "#" class = "text-decoration-none text-dark">
-                    <strong>0</strong> following
+                    <strong>{{ $user->following->count() }}</strong> following
                 </a>
             </div>
 
