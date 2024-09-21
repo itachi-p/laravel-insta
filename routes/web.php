@@ -5,8 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
-use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\LikeController;
+use App\Http\Controllers\FollowController;
 
 Auth::routes();
 
@@ -35,5 +36,8 @@ Route::group(['middleware' => 'auth'], function(){
       // LIKE
     Route::post('/like/{post_id}/store', [LikeController::class, 'store'])->name('like.store');
     Route::delete('/like/{post_id}/destroy', [LikeController::class, 'destroy'])->name('like.destroy');
+
+      // FOLLOW
+    Route::post('/follow/{user_id}/store', [FollowController::class, 'store'])->name('follow.store');
 });
 
