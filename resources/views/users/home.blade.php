@@ -51,6 +51,19 @@
             </div>
 
             {{-- SUGGESTIONS --}}
+            @if ($suggested_users)
+                <div class = "row">
+                    <div class = "col-auto">
+                        <p class="fw-bold text-secondary">Suggestions For You</p>
+                    </div>
+
+                    <div class = "col text-end">
+                        <a href="#" class="fw-bold text-dark text-decoration-none">See All</a>
+                    </div>
+                </div>
+                {{-- @foreach ($suggested_user as $user)
+                @endforeach --}}
+            @endif
         </div>
     </div>
 @endsection

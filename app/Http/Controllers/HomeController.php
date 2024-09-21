@@ -3,16 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     private $post;
+    private $user;
 
-    public function __construct(Post $post)
+    public function __construct(Post $post, User $user)
     {
         $this->post = $post;
+        $this->user = $user;
     }
 
     /**
@@ -33,9 +36,11 @@ class HomeController extends Controller
     public function index()
     {
         $home_posts = $this->getHomePosts();
+        $suggested_users = $this->getSuggetsedUsers();
 
         return view('users.home')
-                ->with('home_posts', $home_posts);
+                ->with('home_posts', $home_posts)
+                ->with('suggested_users', $suggested_users);
     }
 
 
@@ -53,4 +58,21 @@ class HomeController extends Controller
 
         return $home_posts;
     }
+
+
+      // getSuggestedUsers() - Get the users that the Auth user is not following
+    private function getSuggetsedUsers()
+    {
+        $all_users       = $this->user->all()->except(Auth::user()->id);
+        $suggested_users = [];
+
+        foreach ($all_users as $user) {
+            if (!$user->isFollowed()){
+                $suggested_users[] = $user;
+            }
+        }
+
+        return $suggested_users;
+        }
+
 }
