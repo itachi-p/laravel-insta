@@ -71,7 +71,7 @@
                             @else
                                 @if ($post->user->isFollowed())
                                     {{-- unfollow user --}}
-                                    <form action = "#" method = "post">
+                                    <form action = "{{ route('follow.destroy', $post->user->id) }}" method = "post">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="border-0 bg-transparent p-0 text-secondary">Following</button>
