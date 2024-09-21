@@ -10,4 +10,19 @@ class Follow extends Model
     use HasFactory;
 
     public $timestamps = false;
+
+
+    # To get the info like name of a follower
+    public function follower()
+    {
+        return $this->belongsTo(User::class, 'follower_id');
+    }
+
+
+    # One to Many (inverse)
+    # To get the info of the following user
+    public function following()
+    {
+        return $this->belongsTo(User::class, 'following_id');
+    }
 }

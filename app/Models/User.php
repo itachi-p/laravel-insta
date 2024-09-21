@@ -50,4 +50,22 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+
+
+    # One to Many
+    # User has many followers
+    # To get all the followers of a user but only IDs
+    public function followers()
+    {
+        return $this->hasMany(Follow::class, 'following_id');
+    }
+
+
+    # One to Many
+    # User has many following
+    # To get all the following users but only IDs
+    public function following()
+    {
+        return $this->hasMany(Follow::class, 'follower_id');
+    }
 }
