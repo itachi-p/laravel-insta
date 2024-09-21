@@ -84,7 +84,7 @@
                         {{-- heart button --}}
                         <div class = "col-auto">
                             {{-- like post --}}
-                            <form action = "#" method = "post">
+                            <form action = "{{ route('like.store', $post->id) }}" method = "post">
                                 @csrf
                                 <button type = "submit" class = "btn btn-sm shadow-none p-0">
                                     <i class="fa-regular fa-heart"></i>
@@ -94,7 +94,7 @@
 
                         {{-- No. of likes --}}
                         <div class = "col-auto px-0">
-                            <span>3</span>
+                            <span>{{ $post->likes->count() }}</span>
                         </div>
 
                         {{-- categories --}}
