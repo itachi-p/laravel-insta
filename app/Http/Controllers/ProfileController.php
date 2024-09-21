@@ -15,6 +15,7 @@ class ProfileController extends Controller
         $this->user = $user;
     }
 
+
     // show() - view the profile page of a user
     public function show($id)
     {
@@ -24,6 +25,7 @@ class ProfileController extends Controller
             ->with('user', $user);
     }
 
+
     // edit() - view Edit Profile Page
     public function edit()
     {
@@ -32,6 +34,7 @@ class ProfileController extends Controller
         return view('users.profile.edit')
             ->with('user', $user);
     }
+
 
     // update() - save changes of the Auth user
     public function update(Request $request)
@@ -56,5 +59,15 @@ class ProfileController extends Controller
         $user->save();
 
         return redirect()->route('profile.show', Auth::user()->id);
+    }
+
+
+      // followers() - view the followers page of a user
+    public function followers($id)
+    {
+        $user = $this->user->findOrFail($id);
+
+        return view('users.profile.followers')
+        ->with('user', $user);
     }
 }

@@ -2,6 +2,7 @@
 
 @section('title', $user->name)
 
+
 @section('content')
     {{-- include header here --}}
     @include('users.profile.header')
