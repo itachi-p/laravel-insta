@@ -9,14 +9,25 @@
     {{-- heart button + No. of likes + categories --}}
     <div class="row align-items-center">
         {{-- heart button --}}
-        <div class="col-auto">
-            {{-- like post --}}
-            <form action = "{{ route('like.store', $post->id) }}" method = "post">
-                @csrf
-                <button type="submit" class="btn btn-sm shadow-none p-0">
-                    <i class="fa-regular fa-heart"></i>
-                </button>
-            </form>
+        <div class = "col-auto">
+            @if ($post->isLiked())
+                {{-- unlike post --}}
+                <form action = "#" method = "post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-sm shadow-none p-0">
+                        <i class="fa-solid fa-heart text-danger"></i>
+                    </button>
+                </form>
+            @else
+                {{-- like post --}}
+                <form action = "{{ route('like.store', $post->id) }}" method = "post">
+                    @csrf
+                    <button type="submit" class="btn btn-sm shadow-none p-0">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                </form>
+            @endif
         </div>
 
         {{-- No. of likes --}}
