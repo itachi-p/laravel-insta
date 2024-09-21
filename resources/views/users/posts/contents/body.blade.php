@@ -15,8 +15,8 @@
                 <form action = "#" method = "post">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-sm shadow-none p-0">
-                        <i class="fa-solid fa-heart text-danger"></i>
+                    <button type  = "submit" class = "btn btn-sm shadow-none p-0">
+                    <i      class = "fa-solid fa-heart text-danger"></i>
                     </button>
                 </form>
             @else

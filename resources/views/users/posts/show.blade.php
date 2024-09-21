@@ -8,9 +8,10 @@
         .col-4 {
             overflow-y: scroll;
         }
+
         .card-body {
             position: absolute;
-            top     : 65px;
+            top: 65px;
         }
     </style>
 
@@ -27,7 +28,7 @@
                     <div class = "row align-items-center">
                         {{-- avatar --}}
                         <div class = "col-auto">
-                        <a   href  = "{{ route('profile.show', $post->user->id) }}">
+                            <a href  = "{{ route('profile.show', $post->user->id) }}">
                                 @if ($post->user->avatar)
                                     <img src="{{ $post->user->avatar }}" alt="{{ $post->user->name }}"
                                         class="rounded-circle avatar-sm">
@@ -39,7 +40,8 @@
 
                         {{-- name --}}
                         <div class = "col ps-0">
-                            <a href  = "{{ route('profile.show', $post->user->id) }}" class = "text-decoration-none text-dark">
+                            <a href  = "{{ route('profile.show', $post->user->id) }}"
+                                class = "text-decoration-none text-dark">
                                 {{ $post->user->name }}
                             </a>
                         </div>
@@ -83,13 +85,24 @@
                     <div class = "row align-items-center">
                         {{-- heart button --}}
                         <div class = "col-auto">
-                            {{-- like post --}}
-                            <form action = "{{ route('like.store', $post->id) }}" method = "post">
-                                @csrf
-                                <button type = "submit" class = "btn btn-sm shadow-none p-0">
-                                    <i class="fa-regular fa-heart"></i>
-                                </button>
-                            </form>
+                            @if ($post->isLiked())
+                                {{-- unlike post --}}
+                                <form action = "#" method = "post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type  = "submit" class = "btn btn-sm shadow-none p-0">
+                                        <i class = "fa-solid fa-heart text-danger"></i>
+                                    </button>
+                                </form>
+                            @else
+                                {{-- like post --}}
+                                <form action = "{{ route('like.store', $post->id) }}" method = "post">
+                                    @csrf
+                                    <button type="submit" class="btn btn-sm shadow-none p-0">
+                                        <i class="fa-regular fa-heart"></i>
+                                    </button>
+                                </form>
+                            @endif
                         </div>
 
                         {{-- No. of likes --}}
@@ -110,7 +123,8 @@
                     </div>
 
                     {{-- owner + description --}}
-                    <a href="{{ route('profile.show', $post->user->id) }}" class = "text-decoration-none text-dark fw-bold">
+                    <a href="{{ route('profile.show', $post->user->id) }}"
+                        class = "text-decoration-none text-dark fw-bold">
                         {{ $post->user->name }}
                     </a>
                     &nbsp;
@@ -139,7 +153,8 @@
                         <ul class = "list-group mt-2">
                             @foreach ($post->comments as $comment)
                                 <li class = "list-group-item border-0 p-0 mb-2 bg-white">
-                                <a  href  = "{{ route('profile.show', $comment->user->id) }}" class = "text-decoration-none text-dark fw-bold">{{ $comment->user->name }}</a>
+                                    <a href  = "{{ route('profile.show', $comment->user->id) }}"
+                                        class = "text-decoration-none text-dark fw-bold">{{ $comment->user->name }}</a>
                                     &nbsp;
                                     <p class = "d-inline fw-light">{{ $comment->body }}</p>
 
@@ -147,12 +162,14 @@
                                         @csrf
                                         @method('DELETE')
 
-                                        <span class = "text-uppercase text-muted xsmall">{{ date('M d, Y', strtotime($comment->created_at)) }}</span>
+                                        <span
+                                            class = "text-uppercase text-muted xsmall">{{ date('M d, Y', strtotime($comment->created_at)) }}</span>
 
                                         {{-- If the AUTH USER is the OWNER of the COMMENT, show the DELETE BUTTON --}}
                                         @if (AUTH::user()->id === $comment->user->id)
-                                        &middot; <!-- middle dot -> "・" -->
-                                        <button type="submit" class="border-0 bg-transparent text-danger p-0 xsmall">Delete</button>
+                                            &middot; <!-- middle dot -> "・" -->
+                                            <button type="submit"
+                                                class="border-0 bg-transparent text-danger p-0 xsmall">Delete</button>
                                         @endif
                                     </form>
                                 </li>

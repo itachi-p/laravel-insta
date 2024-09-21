@@ -23,4 +23,16 @@ class LikeController extends Controller
 
         return redirect()->back();
     }
+
+
+      // destroy() - delete the like / unlike a post
+    public function destroy($post_id)
+    {
+        $this->like
+        ->where('user_id', Auth::user()->id)
+        ->where('post_id', $post_id)
+        ->delete();
+
+        return redirect()->back();
+    }
 }
