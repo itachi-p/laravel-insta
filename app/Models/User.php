@@ -3,9 +3,10 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -22,6 +23,7 @@ class User extends Authenticatable
         'password',
     ];
 
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -31,6 +33,7 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
 
     /**
      * Get the attributes that should be cast.
@@ -44,6 +47,7 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
 
     # To get all the posts of a user
     public function posts()
@@ -67,5 +71,12 @@ class User extends Authenticatable
     public function following()
     {
         return $this->hasMany(Follow::class, 'follower_id');
+    }
+
+
+    # Will return TRUE if the Auth user is following a user.
+    public function isFollowed()
+    {
+        return $this->followers()->where('follower_id', Auth::user()->id)->exists();
     }
 }
