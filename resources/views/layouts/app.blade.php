@@ -137,8 +137,8 @@
                                 </a>
 
                                 {{-- Posts --}}
-                                <a href = "#" class = "list-group-item">
-                                    <i class="fa-solid fa-newspaper"></i> Posts
+                                <a href  = "#" class = "list-group-item">
+                                <i class = "fa-solid fa-newspaper"></i> Posts
                                 </a>
 
                                 {{-- Categories --}}
