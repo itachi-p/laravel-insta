@@ -23,7 +23,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Custom CSS -->
-    <link rel = "stylesheet" href = "{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <!-- Original Favicon -->
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 </head>
@@ -80,9 +80,10 @@
 
                             {{-- Account --}}
                             <li class="nav-item dropdown">
-                                {{-- <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a> --}}
+                                {{-- <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
+                            </a> --}}
 
                                 <button id="account-dropdown" class="btn shadow-none nav-link" data-bs-toggle="dropdown">
                                     @if (Auth::user()->avatar)
@@ -94,7 +95,11 @@
                                 </button>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    {{-- [SOON] Admin Controls --}}
+                                    {{-- Admin Controls --}}
+                                    <a href="{{ route('admin.users') }}" class="dropdown-item">
+                                        <i class="fa-solid fa-user-gear"></i> Admin
+                                    </a>
+                                    <hr class="dropdown-divider">
 
                                     {{-- Profile --}}
                                     <a href="{{ route('profile.show', Auth::user()->id) }}" class="dropdown-item">
@@ -122,8 +127,27 @@
         <main class="py-5">
             <div class="container">
                 <div class="row justify-content-center">
-                    {{-- [SOON] Admin Controls --}}
-                    {{-- <div class="col3"></div> --}}
+                    {{-- Admin Controls --}}
+                    @if (request()->is('admin/*'))
+                        <div class = "col-3">
+                            <div class = "list-group">
+                                {{-- Users --}}
+                                <a href  = "#" class = "list-group-item">
+                                <i class = "fa-solid fa-users"></i> Users
+                                </a>
+
+                                {{-- Posts --}}
+                                <a href = "#" class = "list-group-item">
+                                    <i class="fa-solid fa-newspaper"></i> Posts
+                                </a>
+
+                                {{-- Categories --}}
+                                <a href  = "#" class = "list-group-item">
+                                    <i class = "fa-solid fa-tags"></i> Categories
+                                </a>
+                            </div>
+                        </div>
+                    @endif
 
                     <div class="col-9">
                         @yield('content')

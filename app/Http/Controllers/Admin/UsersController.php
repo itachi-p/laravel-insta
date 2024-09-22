@@ -14,4 +14,14 @@ class UsersController extends Controller
     {
         $this->user = $user;
     }
+
+
+    # index() - view the Admin: Users Page
+    public function index()
+    {
+        $all_users = $this->user->latest()->get();
+
+        return view('admin.users.index')
+        ->with('all_users', $all_users);
+    }
 }
