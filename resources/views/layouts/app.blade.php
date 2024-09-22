@@ -132,17 +132,17 @@
                         <div class = "col-3">
                             <div class = "list-group">
                                 {{-- Users --}}
-                                <a href  = "#" class = "list-group-item">
+                                <a href  = "#" class = "list-group-item {{ request()->is('admin/users') ? 'active' : '' }}">
                                 <i class = "fa-solid fa-users"></i> Users
                                 </a>
 
                                 {{-- Posts --}}
-                                <a href  = "#" class = "list-group-item">
+                                <a href  = "#" class = "list-group-item {{ request()->is('admin/posts') ? 'active' : '' }}">
                                 <i class = "fa-solid fa-newspaper"></i> Posts
                                 </a>
 
                                 {{-- Categories --}}
-                                <a href  = "#" class = "list-group-item">
+                                <a href  = "#" class = "list-group-item {{ request()->is('admin/categories') ? 'active' : '' }}">
                                     <i class = "fa-solid fa-tags"></i> Categories
                                 </a>
                             </div>
