@@ -5,9 +5,9 @@
 @section('content')
     @foreach ($suggested_users as $user)
         {{-- Avatar --}}
-        <div class="row justify-content-center mb-3 align-items-center">
-            <div class="col-auto pt-2">
-                <a href="{{ route('profile.show', $user->id) }}">
+        <div class = "row justify-content-center mb-3 align-items-center">
+            <div class = "col-auto pt-2">
+                <a href  = "{{ route('profile.show', $user->id) }}">
                     @if ($user->avatar)
                         <img src="{{ $user->avatar }}" alt="{{ $user->name }}" class="rounded-circle avatar-md">
                     @else
