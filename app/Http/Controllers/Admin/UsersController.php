@@ -24,4 +24,13 @@ class UsersController extends Controller
         return view('admin.users.index')
         ->with('all_users', $all_users);
     }
+
+
+    # deactivate() - to soft delete the user
+    public function deactivate($id)
+    {
+        $this->user->destroy($id);
+
+        return redirect()->back();
+    }
 }

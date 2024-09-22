@@ -50,7 +50,7 @@
                                 </div>
                             </div>
                             {{-- Include Deactivate User Modal here --}}
-
+                            @include('admin.users.modals.status')
                         @endif
                     </td>
                 </tr>
