@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            // This will add the deleted_at column to the users table
+              // This will add the deleted_at column to the users table
             $table->softDeletes();
         });
     }
@@ -23,7 +23,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->dropSoftDeletes();
         });
     }
 };
