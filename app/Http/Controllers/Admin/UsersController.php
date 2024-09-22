@@ -34,4 +34,15 @@ class UsersController extends Controller
 
         return redirect()->back();
     }
+
+
+    # activate() - undelete SoftDeletes column (deleted_at) back to NULL
+    public function activate($id)
+    {
+          // onlyTrashed() - retrieves soft deleted records only.
+          // restore() - This will "un-delete" a soft deleted model instance. This will set the "deleted_at" column to NULL.
+        $this->user->onlyTrashed()->findOrFail($id)->restore();
+
+        return redirect()->back();
+    }
 }
