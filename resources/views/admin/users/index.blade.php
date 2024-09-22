@@ -34,7 +34,12 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ date('M d, Y', strtotime($user->created_at)) }}</td>
                     <td>
-                        <i class="fa-solid fa-circle text-success"></i>&nbsp;Active
+                        {{-- $user->trashed() returns TRUE if the user was soft deleted. --}}
+                        @if ($user->trashed())
+                            <i class="fa-regular fa-circle text-secondary"></i>&nbsp;Inactive
+                        @else
+                            <i class="fa-solid fa-circle text-success"></i>&nbsp;Active
+                        @endif
                     </td>
                     <td>
                         @if (Auth::user()->id != $user->id)
