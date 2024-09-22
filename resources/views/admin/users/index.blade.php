@@ -57,5 +57,5 @@
             @endforeach
         </tbody>
     </table>
-
+    {{ $all_users->links() }}
 @endsection
