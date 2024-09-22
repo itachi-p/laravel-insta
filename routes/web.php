@@ -14,7 +14,10 @@ Auth::routes();
   // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'auth'], function(){
-    Route::get('/', [HomeController::class, 'index'])->name('index'); // homepage
+    Route::get('/', [HomeController::class, 'index'])->name('index');  // homepage
+
+      // SUGGESTION
+    Route::get('/suggestions', [HomeController::class, 'suggestions'])->name('suggestions');
 
     // POST
     Route::get('/post/create', [PostController::class, 'create'])->name('post.create');

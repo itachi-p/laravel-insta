@@ -67,13 +67,30 @@ class HomeController extends Controller
         $suggested_users = [];
 
         foreach ($all_users as $user) {
-            if (!$user->isFollowed()){
+            if (!$user->isFollowed()) {
                 $suggested_users[] = $user;
             }
         }
 
         return array_slice($suggested_users, 0, 5);  // get the first 5 users
-        // array_slice(x, y, z) - x: array, y: offset/starting index, z: length/number of elements to get
+         // array_slice(x, y, z) - x: array, y: offset/starting index, z: length/number of elements to get
         }
+
+
+      // suggestions() - view the suggestions page
+    public function suggestions()
+    {
+        $all_users       = $this->user->all()->except(Auth::user()->id);
+        $suggested_users = [];
+
+        foreach ($all_users as $user) {
+            if (!$user->isFollowed()) {
+                $suggested_users[] = $user;
+            }
+        }
+
+        return view('users.suggestions')
+        ->with('suggested_users', $suggested_users);
+    }
 
 }
