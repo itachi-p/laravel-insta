@@ -26,10 +26,10 @@
                     </div>
                     <p class = "m-0">{{ $user->email }}</p>
                     <p class = "m-0">
-                        @if ($user->followers->count() == 0)
-                            No followers yet
-                        @else
+                        @if ($user->followers->count() > 0)
                             {{ $user->followers->count() }} {{ $user->followers->count() == 1 ? 'follower' : 'followers' }}
+                        @else
+                            No followers yet
                         @endif
                     </p>
                 </div>
