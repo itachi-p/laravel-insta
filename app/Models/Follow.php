@@ -15,7 +15,7 @@ class Follow extends Model
     # To get the info like name of a follower
     public function follower()
     {
-        return $this->belongsTo(User::class, 'follower_id');
+        return $this->belongsTo(User::class, 'follower_id')->withTrashed();
     }
 
 
@@ -23,6 +23,6 @@ class Follow extends Model
     # To get the info of the following user
     public function following()
     {
-        return $this->belongsTo(User::class, 'following_id');
+        return $this->belongsTo(User::class, 'following_id')->withTrashed();
     }
 }
