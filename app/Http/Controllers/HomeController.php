@@ -36,7 +36,7 @@ class HomeController extends Controller
     public function index()
     {
         $home_posts      = $this->getHomePosts();
-        $suggested_users = $this->getSuggetsedUsers();
+        $suggested_users = $this->getSuggestedUsers();
 
         return view('users.home')
                 ->with('home_posts', $home_posts)
@@ -48,7 +48,7 @@ class HomeController extends Controller
     private function getHomePosts()
     {
         $all_posts  = $this->post->latest()->get();
-        $home_posts = [];                            // In case the array $home_posts is empty, it will not return NULL, but empty instead
+        $home_posts = []; // In case the array $home_posts is empty, it will not return NULL, but empty instead
 
         foreach ($all_posts as $post){
             if ($post->user->isFollowed() || $post->user->id === Auth::user()->id){
@@ -61,7 +61,7 @@ class HomeController extends Controller
 
 
       // getSuggestedUsers() - Get the users that the Auth user is not following
-    private function getSuggetsedUsers()
+    private function getSuggestedUsers()
     {
         $all_users       = $this->user->all()->except(Auth::user()->id);
         $suggested_users = [];

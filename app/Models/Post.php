@@ -13,7 +13,7 @@ class Post extends Model
     # A post belongs to a user
     # To get the owner of the post
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)->withTrashed();
     }
 
 
