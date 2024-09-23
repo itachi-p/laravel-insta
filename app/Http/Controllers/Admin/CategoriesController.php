@@ -24,4 +24,41 @@ class CategoriesController extends Controller
         return view('admin.categories.index')
             ->with('all_categories', $all_categories);
     }
+
+      // store() - save the category to DB
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|min:1|max:50'
+        ]);
+
+        $this->category->name = $request->name;
+        $this->category->save();
+
+        return redirect()->back();
+    }
+
+
+      // update() - update the category in DB
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'new_name' => 'required|min:1|max:50|unique:categories,name,' . $id
+        ]);
+
+        $category = $this->category->findOrFail($id);
+        $category->name = ucwords(strtolower($request->new_name));
+        $category->save();
+
+        return redirect()->back();
+    }
+
+
+          // destroy() - destroy/delete the category from DB (permanently delete, no soft delete)
+        public function destroy($id)
+        {
+            $this->category->destroy($id);
+
+            return redirect()->back();
+        }
 }

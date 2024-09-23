@@ -63,7 +63,10 @@ Route::group(['middleware' => 'auth'], function(){
         Route::patch  ('/posts/{id}/unhide', [PostsController::class, 'unhide'])->name('posts.unhide');  // admin.posts.unhide
 
         // CATEGORIES
-        Route::get ('/categories', [CategoriesController::class, 'index'])->name('categories');  // admin.categories
+        Route::get ('/categories', [CategoriesController::class, 'index'])->name('categories');
+        Route::post  ('/categories/store', [CategoriesController::class, 'store'])->name('categories.store');         // admin.categories.store
+        Route::patch('/categories/{id}/update', [CategoriesController::class, 'update'])->name('categories.update');  // admin.categories.update
+        Route::delete('/categories/{id}/destroy', [CategoriesController::class, 'destroy'])->name('categories.destroy'); // admin.categories.destroy
     });
 });
 

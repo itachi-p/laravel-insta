@@ -4,22 +4,27 @@
 
 @section('content')
 {{-- Show all categories here --}}
+<form action="{{ route('admin.categories.store') }}" method="POST">
+    @csrf
 
-{{-- 新しいカテゴリーの入力フィールドとボタン(別画面には移動せず、下部のリストに直接追加する) --}}
-<div class="d-flex justify-content-between">
-    <form action="#" method="POST">
-        @csrf
-        <div    class = "input-group mb-3">
-        <input  type  = "text" class           = "form-control" name = "name" placeholder = "Add new Category" required>
-        <button class = "btn btn-primary" type = "submit">
+    <div class="row gx-2 mb-4">
+        <div class="col-4">
+            <input type="text" name="name" class="form-control" placeholder="Add a Category..." value="{{ old('name') }}" autofocus>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">
                 <i class="fa-solid fa-plus"></i> Add
             </button>
         </div>
-    </form>
-</div>
+        {{-- Error --}}
+        @error('name')
+        <p class="text-danger small">{{ $message }}</p>
+        @enderror
+    </div>
+</form>
 
-<table class = "table table-hover align-middle bg-white border text-secondary w-75">
-<thead class = "small table-warning text-secondary">
+<table class="table table-hover align-middle bg-white border text-secondary w-75">
+    <thead class="small table-warning text-secondary">
         <tr>
             <th>#</th>
             <th>NAME</th>
@@ -40,14 +45,15 @@
             <td>
                 <div class="d-flex">
                     <button type="button" class="btn btn-sm btn-outline-warning me-2" data-bs-toggle="modal"
-                        data-bs-target="#editCategory{{ $category->id }}">
+                        data-bs-target="#edit-category-{{ $category->id }}">
                         <i class="fa-solid fa-pencil"></i>
                     </button>
                     <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
-                        data-bs-target="#deleteCategory{{ $category->id }}">
+                        data-bs-target="#delete-category-{{ $category->id }}">
                         <i class="fa-solid fa-trash"></i>
                     </button>
                 </div>
+                @include('admin.categories.modals.action')
             </td>
         </tr>
         @endforeach
