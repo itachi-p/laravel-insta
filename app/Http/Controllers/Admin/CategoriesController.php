@@ -15,7 +15,7 @@ class CategoriesController extends Controller
         $this->category = $category;
     }
 
-    // index() - view the Categories Page
+    // index() - view the Admin: Categories Page
     public function index()
     {
           // Retrieve all the categories

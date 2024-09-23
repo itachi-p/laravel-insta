@@ -9,11 +9,11 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
-
-      // categoryは複数のpostを持つ
-    public function posts()
+    # To get the number of posts under a category
+    # To get all the posts under a category
+    public function categoryPost()
     {
-        return $this->belongsToMany(Post::class);
+        return $this->hasMany(CategoryPost::class);
     }
+
 }

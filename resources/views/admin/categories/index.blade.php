@@ -30,18 +30,13 @@
     </thead>
 
     <tbody>
-        {{-- {{ dd($all_categories) }} --}}
         @foreach ($all_categories as $category)
         <tr>
             <td class="text-dark">{{ $category->id }}</td>
             <td>{{ $category->name }}</td>
-            {{-- categoryが含まれるpostの数を表示 --}}
-            <td>{{ $category->posts->count() }}</td>
-            <td>
-                {{ date('M d, Y', strtotime($category->updated_at)) }}
-            </td>
+            <td>{{ $category->categoryPost->count() }}</td>
+            <td>{{ date('M d, Y', strtotime($category->updated_at)) }}</td>
 
-            {{-- 編集と削除ボタン（モーダル action.blade.phpで表示） --}}
             <td>
                 <div class="d-flex">
                     <button type="button" class="btn btn-sm btn-outline-warning me-2" data-bs-toggle="modal"
