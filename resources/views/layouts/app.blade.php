@@ -142,7 +142,7 @@
                                 </a>
 
                                 {{-- Categories --}}
-                                <a href  = "#" class = "list-group-item {{ request()->is('admin/categories') ? 'active' : '' }}">
+                                <a href  = "{{ route('admin.categories') }}" class = "list-group-item {{ request()->is('admin/categories') ? 'active' : '' }}">
                                     <i class = "fa-solid fa-tags"></i> Categories
                                 </a>
                             </div>

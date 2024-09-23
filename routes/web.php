@@ -10,6 +10,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\PostsController;
+use App\Http\Controllers\Admin\CategoriesController;
 
 Auth::routes();
 
@@ -49,18 +50,20 @@ Route::group(['middleware' => 'auth'], function(){
     Route::delete('/follow/{user_id}/destroy', [FollowController::class, 'destroy'])->name('follow.destroy');
 
 
-      // ADMIN
+    // ADMIN
     Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
         // USERS
         Route::get    ('/users', [UsersController::class, 'index'])->name('users');                                 // admin.users
         Route::delete('/users/{id}/deactivate', [UsersController::class, 'deactivate'])->name('users.deactivate');  // admin.users.deactivate
         Route::patch ('/users/{id}/activate', [UsersController::class, 'activate'])->name('users.activate');        // admin.users.activate
 
-                                                                                                               // POSTS
+        // POSTS
         Route::get    ('/posts', [PostsController::class, 'index'])->name('posts');                            // admin.posts
         Route::delete('/posts/{id}/hide', [PostsController::class, 'hide'])->name('posts.hide');         // admin.posts.hide
         Route::patch  ('/posts/{id}/unhide', [PostsController::class, 'unhide'])->name('posts.unhide');  // admin.posts.unhide
 
+        // CATEGORIES
+        Route::get ('/categories', [CategoriesController::class, 'index'])->name('categories');  // admin.categories
     });
 });
 
