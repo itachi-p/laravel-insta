@@ -57,6 +57,17 @@
             </td>
         </tr>
         @endforeach
+            <tr>
+                <td></td>
+                <td class = "text-dark">
+                    Uncategorized
+                    <p class="xsmall mb-0 text-muted">Hidden posts are not included.</p>
+                </td>
+                <td>{{ $uncategorized_count }}</td>
+                <td></td>
+                <td></td>
+            </tr>
     </tbody>
+    {{ $all_categories->links() }}
 </table>
 @endsection
