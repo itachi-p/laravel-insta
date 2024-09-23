@@ -24,7 +24,7 @@
                 {{ $post->id }}
             </td>
             <td>
-                <img src="{{ $post->image }}" alt="{{ $post->name }}" class="d-block mx-auto image-lg">
+                <img src = "{{ $post->image }}" alt = "{{ $post->name }}" class = "d-block mx-auto image-lg">
             </td>
             <td>
                 {{-- CATEGORY --}}
