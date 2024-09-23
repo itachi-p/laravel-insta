@@ -24,16 +24,59 @@
                 {{ $post->id }}
             </td>
             <td>
-                <img src = "{{ $post->image }}" alt = "{{ $post->name }}" class = "d-block mx-auto image-lg">
+                <img src="{{ $post->image }}" alt="{{ $post->name }}" class="d-block mx-auto image-lg">
             </td>
+
             <td>
-                {{-- CATEGORY --}}
-                <a href="{{ route('profile.show', $post->id) }}" class="text-decoration-none text-dark fw-bold">
-                    {{ $post->name }}
-                </a>
+                {{-- categories --}}
+                @forelse ($post->categoryPost as $category_post)
+                <span class="badge bg-secondary bg-opacity-50">
+                    {{ $category_post->category->name }}
+                </span>
+                @empty
+                <div class="badge bg-dark text-wrap">Uncategorized</div>
+                @endforelse
             </td>
+
             <td>{{ $post->user->name }}</td>
             <td>{{ date('M d, Y', strtotime($post->created_at)) }}</td>
+
+            <td>
+                {{-- $post->trashed() returns TRUE if the post was soft deleted. --}}
+                @if ($post->trashed())
+                <i class="fa-regular fa-circle text-secondary"></i>&nbsp;Hidden
+                @else
+                <i class="fa-solid fa-circle text-primary"></i>&nbsp;Visible
+                @endif
+            </td>
+
+            <td>
+                {{-- ellipsis button --}}
+                @if (Auth::user()->id != $post->user->id)
+                <div class="dropdown">
+                    <button class="btn btn-sm" data-bs-toggle="dropdown">
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </button>
+
+                    <div class="dropdown-menu">
+                        @if ($post->trashed())
+                        <button class="dropdown-item text-primary" data-bs-toggle="modal"
+                            data-bs-target="#unhide-post-{{ $post->id }}">
+                            <i class="fa-solid fa-eye"></i> UnHide Post{{ $post->id }}
+                        </button>
+                        @else
+                        <button class="dropdown-item text-danger" data-bs-toggle="modal"
+                            data-bs-target="#hide-post-{{ $post->id }}">
+                            <i class="fa-solid fa-eye-slash"></i> Hide Post{{ $post->id }}
+                        </button>
+                        @endif
+
+                    </div>
+                </div>
+                {{-- Include Deactivate User Modal here --}}
+                @include('admin.posts.modals.status')
+                @endif
+            </td>
 
         </tr>
         @endforeach

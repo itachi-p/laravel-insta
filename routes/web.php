@@ -56,8 +56,11 @@ Route::group(['middleware' => 'auth'], function(){
         Route::delete('/users/{id}/deactivate', [UsersController::class, 'deactivate'])->name('users.deactivate');  // admin.users.deactivate
         Route::patch ('/users/{id}/activate', [UsersController::class, 'activate'])->name('users.activate');        // admin.users.activate
 
-        // POSTS
-        Route::get ('/posts', [PostsController::class, 'index'])->name('posts');  // admin.posts
+                                                                                                               // POSTS
+        Route::get    ('/posts', [PostsController::class, 'index'])->name('posts');                            // admin.posts
+        Route::delete('/posts/{id}/hide', [PostsController::class, 'hide'])->name('posts.hide');         // admin.posts.hide
+        Route::patch  ('/posts/{id}/unhide', [PostsController::class, 'unhide'])->name('posts.unhide');  // admin.posts.unhide
+
     });
 });
 

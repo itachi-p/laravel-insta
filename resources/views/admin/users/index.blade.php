@@ -33,6 +33,7 @@
             </td>
             <td>{{ $user->email }}</td>
             <td>{{ date('M d, Y', strtotime($user->created_at)) }}</td>
+
             <td>
                 {{-- $user->trashed() returns TRUE if the user was soft deleted. --}}
                 @if ($user->trashed())
@@ -40,9 +41,10 @@
                 @else
                 <i class="fa-solid fa-circle text-success"></i>&nbsp;Active
                 @endif
-
             </td>
+
             <td>
+                {{-- ellipsis button --}}
                 @if (Auth::user()->id != $user->id)
                 <div class="dropdown">
                     <button class="btn btn-sm" data-bs-toggle="dropdown">
