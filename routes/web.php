@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\FollowController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\PostsController;
 
 Auth::routes();
 
@@ -51,9 +52,12 @@ Route::group(['middleware' => 'auth'], function(){
       // ADMIN
     Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
         // USERS
-        Route::get   ('/users', [UsersController::class, 'index'])->name('users'); // admin.users
-        Route::delete('/users/{id}/deactivate', [UsersController::class, 'deactivate'])->name('users.deactivate'); // admin.users.deactivate
-        Route::patch('/users/{id}/activate', [UsersController::class, 'activate'])->name('users.activate'); // admin.users.activate
+        Route::get    ('/users', [UsersController::class, 'index'])->name('users');                                 // admin.users
+        Route::delete('/users/{id}/deactivate', [UsersController::class, 'deactivate'])->name('users.deactivate');  // admin.users.deactivate
+        Route::patch ('/users/{id}/activate', [UsersController::class, 'activate'])->name('users.activate');        // admin.users.activate
+
+        // POSTS
+        Route::get ('/posts', [PostsController::class, 'index'])->name('posts');  // admin.posts
     });
 });
 
