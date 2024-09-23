@@ -52,7 +52,6 @@
 
             <td>
                 {{-- ellipsis button --}}
-                @if (Auth::user()->id != $post->user->id)
                 <div class="dropdown">
                     <button class="btn btn-sm" data-bs-toggle="dropdown">
                         <i class="fa-solid fa-ellipsis"></i>
@@ -60,9 +59,9 @@
 
                     <div class="dropdown-menu">
                         @if ($post->trashed())
-                        <button class="dropdown-item text-primary" data-bs-toggle="modal"
-                            data-bs-target="#unhide-post-{{ $post->id }}">
-                            <i class="fa-solid fa-eye"></i> UnHide Post{{ $post->id }}
+                        <button class          = "dropdown-item text-primary" data-bs-toggle = "modal"
+                                data-bs-target = "#unhide-post-{{ $post->id }}">
+                        <i      class          = "fa-solid fa-eye"></i> UnHide Post{{ $post->id }}
                         </button>
                         @else
                         <button class="dropdown-item text-danger" data-bs-toggle="modal"
@@ -75,7 +74,6 @@
                 </div>
                 {{-- Include Deactivate User Modal here --}}
                 @include('admin.posts.modals.status')
-                @endif
             </td>
 
         </tr>

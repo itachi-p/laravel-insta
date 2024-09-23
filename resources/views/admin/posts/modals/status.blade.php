@@ -1,4 +1,4 @@
-{{-- Deactivate --}}
+{{-- Hidden --}}
 <div class="modal fade" id="hide-post-{{ $post->id }}">
     <div class="modal-dialog">
         <div class="modal-content border-danger">
@@ -26,7 +26,7 @@
 </div>
 
 
-{{-- Activate --}}
+{{-- Unhidden --}}
 <div class="modal fade" id="unhide-post-{{ $post->id }}">
     <div class="modal-dialog">
         <div class="modal-content border-primary">
