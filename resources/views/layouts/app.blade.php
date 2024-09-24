@@ -96,10 +96,18 @@
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     {{-- Admin Controls --}}
+                                    {{-- @can('admin') --}}
+                                        {{-- <a href="{{ route('admin.users') }}" class="dropdown-item">
+                                            <i class="fa-solid fa-user-gear"></i> Admin
+                                        </a>
+                                        <hr class="dropdown-divider"> --}}
+                                    {{-- @endcan --}}
+                                    @if (Auth::user()->role_id == 1)
                                     <a href="{{ route('admin.users') }}" class="dropdown-item">
                                         <i class="fa-solid fa-user-gear"></i> Admin
                                     </a>
                                     <hr class="dropdown-divider">
+                                    @endif
 
                                     {{-- Profile --}}
                                     <a href="{{ route('profile.show', Auth::user()->id) }}" class="dropdown-item">
