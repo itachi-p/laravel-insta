@@ -45,4 +45,14 @@ class UsersController extends Controller
 
         return redirect()->back();
     }
+
+      // search() - search for a user (only for admin)
+    public function search(Request $request)
+    {
+        $users = $this->user->where('name', 'LIKE', '%' . $request->search . '%')->paginate(5);
+
+        return view('admin.people.search')
+        ->with('users', $users)
+        ->with('search', $request->search);
+    }
 }

@@ -43,95 +43,95 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    {{-- [SOON] Search bar here. Show it when a user logs in. --}}
+                    {{-- Search bar here. Show it when a user logs in. --}}
                     @auth
-                        @if (!@request()->is('admin/*'))
-                        <ul   class  = "navbar-nav ms-auto">
-                            <form action = "{{ route('search') }}" style = "width: 300px">
-                                    <input type="search" name="search" placeholder="Search..." class="form-control form-control-sm">
-                                </form>
-                            </ul>
-                        @endif
+                    @if (!@request()->is('admin/*'))
+                    <ul class="navbar-nav ms-auto">
+                        <form action="{{ route('search') }}" style="width: 300px">
+                            <input type="search" name="search" placeholder="Search..."
+                                class="form-control form-control-sm">
+                        </form>
+                    </ul>
+                    @endif
                     @endauth
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
+                        @if (Route::has('login'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                        @endif
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
+                        @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                        @endif
                         @else
-                            {{-- Home --}}
-                            <li class="nav-item" title="Home">
-                                <a href="{{ route('index') }}" class="nav-link">
-                                    <i class="fa-solid fa-house fa-dark icon-sm"></i>
-                                </a>
-                            </li>
+                        {{-- Home --}}
+                        <li class="nav-item" title="Home">
+                            <a href="{{ route('index') }}" class="nav-link">
+                                <i class="fa-solid fa-house fa-dark icon-sm"></i>
+                            </a>
+                        </li>
 
-                            {{-- Create Post --}}
-                            <li class="nav-item" title="Create Post">
-                                <a href="{{ route('post.create') }}" class="nav-link">
-                                    <i class="fa-solid fa-circle-plus text-dark icon-sm"></i>
-                                </a>
-                            </li>
+                        {{-- Create Post --}}
+                        <li class="nav-item" title="Create Post">
+                            <a href="{{ route('post.create') }}" class="nav-link">
+                                <i class="fa-solid fa-circle-plus text-dark icon-sm"></i>
+                            </a>
+                        </li>
 
-                            {{-- Account --}}
-                            <li class="nav-item dropdown">
-                                {{-- <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                        {{-- Account --}}
+                        <li class="nav-item dropdown">
+                            {{-- <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a> --}}
 
-                                <button id="account-dropdown" class="btn shadow-none nav-link" data-bs-toggle="dropdown">
-                                    @if (Auth::user()->avatar)
-                                        <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}"
-                                            class="rounded-circle avatar-sm">
-                                    @else
-                                        <i class="fa-solid fa-circle-user text-dark icon-sm"></i>
-                                    @endif
-                                </button>
+                            <button id="account-dropdown" class="btn shadow-none nav-link" data-bs-toggle="dropdown">
+                                @if (Auth::user()->avatar)
+                                <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}"
+                                    class="rounded-circle avatar-sm">
+                                @else
+                                <i class="fa-solid fa-circle-user text-dark icon-sm"></i>
+                                @endif
+                            </button>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    {{-- Admin Controls --}}
-                                    {{-- @can('admin') --}}
-                                        {{-- <a href="{{ route('admin.users') }}" class="dropdown-item">
-                                            <i class="fa-solid fa-user-gear"></i> Admin
-                                        </a>
-                                        <hr class="dropdown-divider"> --}}
-                                    {{-- @endcan --}}
-                                    @if (Auth::user()->role_id == 1)
-                                    <a href="{{ route('admin.users') }}" class="dropdown-item">
-                                        <i class="fa-solid fa-user-gear"></i> Admin
-                                    </a>
-                                    <hr class="dropdown-divider">
-                                    @endif
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                {{-- Admin Controls --}}
+                                {{-- @can('admin') --}}
+                                {{-- <a href="{{ route('admin.users') }}" class="dropdown-item">
+                                    <i class="fa-solid fa-user-gear"></i> Admin
+                                </a>
+                                <hr class="dropdown-divider"> --}}
+                                {{-- @endcan --}}
+                                @if (Auth::user()->role_id == 1)
+                                <a href="{{ route('admin.users') }}" class="dropdown-item">
+                                    <i class="fa-solid fa-user-gear"></i> Admin
+                                </a>
+                                <hr class="dropdown-divider">
+                                @endif
 
-                                    {{-- Profile --}}
-                                    <a href="{{ route('profile.show', Auth::user()->id) }}" class="dropdown-item">
-                                        <i class="fa-solid fa-circle-user"></i> Profile
-                                    </a>
+                                {{-- Profile --}}
+                                <a href="{{ route('profile.show', Auth::user()->id) }}" class="dropdown-item">
+                                    <i class="fa-solid fa-circle-user"></i> Profile
+                                </a>
 
-                                    {{-- Logout --}}
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
+                                {{-- Logout --}}
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        <i class="fa-solid fa-right-from-bracket"></i> {{ __('Logout') }}
-                                    </a>
+                                    <i class="fa-solid fa-right-from-bracket"></i> {{ __('Logout') }}
+                                </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
                         @endguest
                     </ul>
                 </div>
@@ -143,24 +143,27 @@
                 <div class="row justify-content-center">
                     {{-- Admin Controls --}}
                     @if (request()->is('admin/*'))
-                        <div class = "col-3">
-                            <div class = "list-group">
-                                {{-- Users --}}
-                                <a href  = "{{ route('admin.users') }}" class = "list-group-item {{ request()->is('admin/users') ? 'active' : '' }}">
-                                <i class = "fa-solid fa-users"></i> Users
-                                </a>
+                    <div class="col-3">
+                        <div class="list-group">
+                            {{-- Users --}}
+                            <a href="{{ route('admin.users') }}"
+                                class="list-group-item {{ request()->is('admin/users') ? 'active' : '' }}">
+                                <i class="fa-solid fa-users"></i> Users
+                            </a>
 
-                                {{-- Posts --}}
-                                <a href  = "{{ route('admin.posts') }}" class = "list-group-item {{ request()->is('admin/posts') ? 'active' : '' }}">
-                                <i class = "fa-solid fa-newspaper"></i> Posts
-                                </a>
+                            {{-- Posts --}}
+                            <a href="{{ route('admin.posts') }}"
+                                class="list-group-item {{ request()->is('admin/posts') ? 'active' : '' }}">
+                                <i class="fa-solid fa-newspaper"></i> Posts
+                            </a>
 
-                                {{-- Categories --}}
-                                <a href  = "{{ route('admin.categories') }}" class = "list-group-item {{ request()->is('admin/categories') ? 'active' : '' }}">
-                                    <i class = "fa-solid fa-tags"></i> Categories
-                                </a>
-                            </div>
+                            {{-- Categories --}}
+                            <a href="{{ route('admin.categories') }}"
+                                class="list-group-item {{ request()->is('admin/categories') ? 'active' : '' }}">
+                                <i class="fa-solid fa-tags"></i> Categories
+                            </a>
                         </div>
+                    </div>
                     @endif
 
                     <div class="col-9">

@@ -3,6 +3,15 @@
 @section('title', 'Admin: Users')
 
 @section('content')
+{{-- Search for users here --}}
+<div class = "row justify-content-end">
+    <div class="col-auto mb-3">
+<form action="{{ route('admin.search') }}" style="width: 300px">
+    <input type="search" name="search" placeholder="Search..." class="form-control form-control-sm ">
+</form>
+</div>
+</div>
+
 {{-- Show all users here --}}
 <table class="table table-hover align-middle bt-white border text-secondary">
     <thead class="small table-success text-secondary">
