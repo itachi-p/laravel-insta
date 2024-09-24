@@ -8,7 +8,7 @@
     <div class="col-auto mb-3">
         <form action = "{{ route('admin.search') }}" style = "width: 300px">
             @php
-            $search = $search ?? ''; // if $search is not set, set it to an empty string
+            $search = $search ?? '';  // if $search is not set, set it to an empty string
             @endphp
             <input type="search" name="search" placeholder="Search..." class="form-control form-control-sm"
                 value="{{ $search }}">
@@ -92,5 +92,9 @@
         @endforeach
     </tbody>
 </table>
-{{ $all_users->links() }}
+{{-- Pagination --}}
+{{-- {{ $all_users->links() }} --}}
+
+{{-- Pagination with after search --}}
+{{ $all_users->appends(['search' => $search])->links() }}
 @endsection
