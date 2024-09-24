@@ -147,7 +147,7 @@
                         <div class="list-group">
                             {{-- Users --}}
                             <a href="{{ route('admin.users') }}"
-                                class="list-group-item {{ request()->is('admin/users') ? 'active' : '' }}">
+                                class="list-group-item {{ (request()->is('admin/users') || request()->is('admin/people*')) ? 'active' : '' }}">
                                 <i class="fa-solid fa-users"></i> Users
                             </a>
 

@@ -51,8 +51,8 @@ class UsersController extends Controller
     {
         $users = $this->user->where('name', 'LIKE', '%' . $request->search . '%')->paginate(5);
 
-        return view('admin.people.search')
-        ->with('users', $users)
+        return view('admin.users.index')
+        ->with('all_users', $users)
         ->with('search', $request->search);
     }
 }

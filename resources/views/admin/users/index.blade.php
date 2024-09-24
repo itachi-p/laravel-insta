@@ -4,12 +4,21 @@
 
 @section('content')
 {{-- Search for users here --}}
-<div class = "row justify-content-end">
+<div class="row justify-content-end">
     <div class="col-auto mb-3">
-<form action="{{ route('admin.search') }}" style="width: 300px">
-    <input type="search" name="search" placeholder="Search..." class="form-control form-control-sm ">
-</form>
+        <form action = "{{ route('admin.search') }}" style = "width: 300px">
+            @php
+            $search = $search ?? ''; // if $search is not set, set it to an empty string
+            @endphp
+            <input type="search" name="search" placeholder="Search..." class="form-control form-control-sm"
+                value="{{ $search }}">
+        </form>
+    </div>
 </div>
+
+{{-- Show number of users found --}}
+<div class="alert alert-warning text-center" role="alert">
+    {{ $all_users->isEmpty() ? "No" : $all_users->total() }} users found
 </div>
 
 {{-- Show all users here --}}
