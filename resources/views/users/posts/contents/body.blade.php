@@ -33,7 +33,7 @@
         {{-- No. of likes --}}
         <div class="col-auto px-0 ">
             <button type="button" class="btn btn-link p-0" data-bs-toggle="modal"
-                data-bs-target="#likes-users-{{ $post->user->id }}">{{ $post->likes->count() }}</button>
+                data-bs-target="#likes-users-{{ $post->id }}">{{ $post->likes->count() }}</button>
         </div>
         @include('users.posts.contents.modals.likes')
 

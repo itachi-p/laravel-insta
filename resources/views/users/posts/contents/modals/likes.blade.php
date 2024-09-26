@@ -1,5 +1,5 @@
 {{-- Likes Modal --}}
-<div class="modal fade" id="likes-users-{{ $post->user->id }}" tabindex="-1" aria-labelledby="likesModalLabel"
+<div class="modal fade" id="likes-users-{{ $post->id }}" tabindex="-1" aria-labelledby="likesModalLabel"
     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content border-success">
@@ -8,8 +8,8 @@
                     <i class="fa-solid fa-heart text-danger"></i> Likes
                 </div>
             </div>
-            <div class="modal-body mx-auto">
-                <ul class="list-group">
+            <div class = "modal-body mx-auto">
+            <ul  class = "list-group">
                     @foreach($post->likes as $like)
                     <li class="d-flex align-items-center mb-2">
                         @if ($like->user->avatar)
